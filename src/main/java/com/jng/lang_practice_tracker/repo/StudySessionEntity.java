@@ -11,6 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.net.URL;
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -21,6 +22,11 @@ import java.util.UUID;
 @Setter
 @Table("studySession")
 public class StudySessionEntity {
+    public enum Status {
+        PRESENT,
+        DELETED
+    }
+
     @Column
     private UUID id;
 
@@ -41,6 +47,15 @@ public class StudySessionEntity {
 
     @Column
     private LocalDate studyDate;
+
+    @Column
+    private Instant created;
+
+    @Column
+    private Instant updated;
+
+    @Column
+    private Status status;
 
     public static StudySessionEntity from(StudySession studySession) {
         return builder()
