@@ -41,4 +41,16 @@ public class StudySessionEntity {
 
     @Column
     private LocalDate studyDate;
+
+    public static StudySessionEntity from(StudySession studySession) {
+        return builder()
+                .id(studySession.getId())
+                .description(studySession.getDescription())
+                .resourceLink(studySession.getResourceLink())
+                .resourceMaterial(studySession.getResourceMaterial())
+                .timeSpent(studySession.getTimeSpent())
+                .method(studySession.getMethod())
+                .studyDate(studySession.getStudyDate())
+                .build();
+    }
 }
