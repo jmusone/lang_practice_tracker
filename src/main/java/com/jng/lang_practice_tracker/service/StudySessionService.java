@@ -14,17 +14,17 @@ import java.util.UUID;
 public class StudySessionService {
     private final StudySessionRepository sessionRepository;
 
-    Flux<StudySession> findAll() {
+    public Flux<StudySession> findAll() {
         return sessionRepository.findAll()
                 .map(StudySession::from);
     }
 
-    Mono<StudySession> findById(UUID id) {
+    public Mono<StudySession> findById(UUID id) {
         return sessionRepository.findById(id)
                 .map(StudySession::from);
     }
 
-    Mono<StudySession> create(StudySession session) {
+    public Mono<StudySession> create(StudySession session) {
         return sessionRepository.save(StudySessionEntity.from(session)
                 .toBuilder()
                 .created(Instant.now())
@@ -33,7 +33,7 @@ public class StudySessionService {
                 .map(StudySession::from);
     }
 
-    Mono<StudySession> update(StudySession session) {
+    public Mono<StudySession> update(StudySession session) {
         return sessionRepository.findById(session.getId())
                 .map(entity -> entity.toBuilder()
                         .id(session.getId())
@@ -49,7 +49,7 @@ public class StudySessionService {
                 .map(StudySession::from);
     }
 
-    Mono<Void> delete(UUID id) {
+    public Mono<Void> delete(UUID id) {
         return sessionRepository.findById(id)
                 .map(entity -> entity.toBuilder()
                         .updated(Instant.now())
