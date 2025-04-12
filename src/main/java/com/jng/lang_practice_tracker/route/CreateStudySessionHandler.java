@@ -3,6 +3,8 @@ package com.jng.lang_practice_tracker.route;
 import com.jng.lang_practice_tracker.domain.StudySession;
 import com.jng.lang_practice_tracker.service.StudySessionService;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.HandlerFunction;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -14,6 +16,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Slf4j
 @RequiredArgsConstructor
 public class CreateStudySessionHandler implements HandlerFunction<ServerResponse> {
     private final StudySessionService studySessionService;
@@ -29,7 +32,11 @@ public class CreateStudySessionHandler implements HandlerFunction<ServerResponse
                         .studyDate(request.getStudyDate())
                         .build()))
                 .flatMap(studySession -> ServerResponse.ok()
-                        .body(BodyInserters.fromValue(Response.from(studySession))));
+                        .body(BodyInserters.fromValue(Response.from(studySession))))
+                .onErrorResume(ex -> {
+                    log.error("[Error] " + ex, ex);
+                    return ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+                });
     }
 
     @Data
