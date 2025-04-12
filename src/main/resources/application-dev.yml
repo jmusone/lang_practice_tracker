@@ -1,0 +1,8 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgres://localhost:5432/studysession-db
+    username: username
+    password: password
+  sql:
+    init:
+      mode: always

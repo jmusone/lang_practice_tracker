@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: lang_practice_tracker
