@@ -4,8 +4,9 @@ create table if not exists studySession (
        resourceLink varchar,
        resourceMaterial varchar,
        method varchar,
-       timeSpent interval,
+       timeSpent varchar,
        studyDate date,
+       status varchar,
        created timestamp,
        updated timestamp
 );

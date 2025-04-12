@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -27,25 +28,25 @@ public class StudySessionEntity {
         DELETED
     }
 
-    @Column
+    @Id
     private UUID id;
 
     @Column
     private String description;
 
-    @Column
+    @Column(value = "resourceLink")
     private URL resourceLink;
 
-    @Column
+    @Column(value = "resourceMaterial")
     private StudySession.Material resourceMaterial;
 
-    @Column
+    @Column(value = "timeSpent")
     private Duration timeSpent;
 
     @Column
     private StudySession.Method method;
 
-    @Column
+    @Column(value = "studyDate")
     private LocalDate studyDate;
 
     @Column
