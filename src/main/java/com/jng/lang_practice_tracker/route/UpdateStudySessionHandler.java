@@ -32,6 +32,7 @@ public class UpdateStudySessionHandler implements HandlerFunction<ServerResponse
                         .timeSpent(request.getTimeSpent())
                         .method(request.getMethod())
                         .studyDate(request.getStudyDate())
+                        .status(request.getStatus())
                         .build()))
                 .flatMap(studySession -> ServerResponse.ok()
                         .body(BodyInserters.fromValue(Response.from(studySession))));
@@ -48,6 +49,7 @@ public class UpdateStudySessionHandler implements HandlerFunction<ServerResponse
         private Duration timeSpent;
         private StudySession.Method method;
         private LocalDate studyDate;
+        private StudySession.Status status;
     }
 
     @Data
@@ -60,6 +62,7 @@ public class UpdateStudySessionHandler implements HandlerFunction<ServerResponse
         private Duration timeSpent;
         private StudySession.Method method;
         private LocalDate studyDate;
+        private StudySession.Status status;
 
         public static Response from(StudySession studySession) {
             return builder()
@@ -70,6 +73,7 @@ public class UpdateStudySessionHandler implements HandlerFunction<ServerResponse
                     .timeSpent(studySession.getTimeSpent())
                     .method(studySession.getMethod())
                     .studyDate(studySession.getStudyDate())
+                    .status(studySession.getStatus())
                     .build();
         }
     }

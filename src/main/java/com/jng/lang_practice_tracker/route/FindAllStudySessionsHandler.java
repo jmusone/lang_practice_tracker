@@ -53,6 +53,7 @@ public class FindAllStudySessionsHandler implements HandlerFunction<ServerRespon
        private Duration timeSpent;
        private StudySession.Method method;
        private LocalDate studyDate;
+       private StudySession.Status status;
 
        public static Session from(StudySession studySession) {
            return builder()
@@ -63,6 +64,7 @@ public class FindAllStudySessionsHandler implements HandlerFunction<ServerRespon
                    .timeSpent(studySession.getTimeSpent())
                    .method(studySession.getMethod())
                    .studyDate(studySession.getStudyDate())
+                   .status(studySession.getStatus())
                    .build();
        }
    }

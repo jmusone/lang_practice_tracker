@@ -35,6 +35,11 @@ public class StudySession implements Trackable {
         WEBSITE
     }
 
+    public enum Status {
+        PRESENT,
+        DELETED
+    }
+
     private final UUID id;
     private String description;
     private URL resourceLink;
@@ -42,6 +47,7 @@ public class StudySession implements Trackable {
     private Duration timeSpent;
     private Method method;
     private LocalDate studyDate;
+    private Status status;
 
     public static StudySession from(StudySessionEntity studySessionEntity) {
         return builder()
@@ -52,6 +58,7 @@ public class StudySession implements Trackable {
                 .timeSpent(studySessionEntity.getTimeSpent())
                 .method(studySessionEntity.getMethod())
                 .studyDate(studySessionEntity.getStudyDate())
+                .status(studySessionEntity.getStatus())
                 .build();
     }
 }

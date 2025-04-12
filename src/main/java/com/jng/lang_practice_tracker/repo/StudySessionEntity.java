@@ -23,10 +23,6 @@ import java.util.UUID;
 @Setter
 @Table("studySession")
 public class StudySessionEntity {
-    public enum Status {
-        PRESENT,
-        DELETED
-    }
 
     @Id
     private UUID id;
@@ -56,7 +52,7 @@ public class StudySessionEntity {
     private Instant updated;
 
     @Column
-    private Status status;
+    private StudySession.Status status;
 
     public static StudySessionEntity from(StudySession studySession) {
         return builder()
@@ -67,6 +63,7 @@ public class StudySessionEntity {
                 .timeSpent(studySession.getTimeSpent())
                 .method(studySession.getMethod())
                 .studyDate(studySession.getStudyDate())
+                .status(studySession.getStatus())
                 .build();
     }
 }

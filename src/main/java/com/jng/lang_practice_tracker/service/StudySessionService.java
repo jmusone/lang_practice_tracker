@@ -28,7 +28,7 @@ public class StudySessionService {
         return sessionRepository.save(StudySessionEntity.from(session)
                 .toBuilder()
                 .created(Instant.now())
-                .status(StudySessionEntity.Status.PRESENT)
+                .status(StudySession.Status.PRESENT)
                 .build())
                 .map(StudySession::from);
     }
@@ -43,6 +43,7 @@ public class StudySessionService {
                         .timeSpent(session.getTimeSpent())
                         .method(session.getMethod())
                         .studyDate(session.getStudyDate())
+                        .status(session.getStatus())
                         .updated(Instant.now())
                         .build())
                 .flatMap(updated -> sessionRepository.save(updated))
@@ -53,7 +54,7 @@ public class StudySessionService {
         return sessionRepository.findById(id)
                 .map(entity -> entity.toBuilder()
                         .updated(Instant.now())
-                        .status(StudySessionEntity.Status.DELETED)
+                        .status(StudySession.Status.DELETED)
                         .build())
                 .flatMap(deleted -> sessionRepository.save(deleted))
                 .then();
