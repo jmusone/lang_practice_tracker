@@ -1,6 +1,6 @@
 package com.jng.lang_practice_tracker.route;
 
-import com.jng.lang_practice_tracker.constants.Constants;
+import com.jng.lang_practice_tracker.constants.Endpoint;
 import com.jng.lang_practice_tracker.service.StudySessionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.server.HandlerFunction;
@@ -15,7 +15,7 @@ public class DeleteStudySessionHandler implements HandlerFunction<ServerResponse
     private final StudySessionService studySessionService;
 
     public Mono<ServerResponse> handle(ServerRequest serverRequest) {
-        return studySessionService.delete(UUID.fromString(serverRequest.pathVariable(Constants.ID_VARIABLE)))
+        return studySessionService.delete(UUID.fromString(serverRequest.pathVariable(Endpoint.ID_VARIABLE)))
                 .flatMap(studySession -> ServerResponse.noContent()
                         .build());
     }

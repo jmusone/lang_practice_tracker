@@ -1,5 +1,6 @@
 package com.jng.lang_practice_tracker.repo;
 
+import com.jng.lang_practice_tracker.constants.DataEnum;
 import com.jng.lang_practice_tracker.domain.StudySession;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,13 +35,13 @@ public class StudySessionEntity {
     private URL resourceLink;
 
     @Column(value = "resourceMaterial")
-    private StudySession.Material resourceMaterial;
+    private DataEnum.Material resourceMaterial;
 
     @Column(value = "timeSpent")
     private Duration timeSpent;
 
     @Column
-    private StudySession.Method method;
+    private DataEnum.Method method;
 
     @Column(value = "studyDate")
     private LocalDate studyDate;
@@ -52,7 +53,7 @@ public class StudySessionEntity {
     private Instant updated;
 
     @Column
-    private StudySession.Status status;
+    private DataEnum.Status status;
 
     public static StudySessionEntity from(StudySession studySession) {
         return builder()

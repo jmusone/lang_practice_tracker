@@ -1,5 +1,6 @@
 package com.jng.lang_practice_tracker.route;
 
+import com.jng.lang_practice_tracker.constants.DataEnum;
 import com.jng.lang_practice_tracker.domain.StudySession;
 import com.jng.lang_practice_tracker.service.StudySessionService;
 import lombok.Builder;
@@ -49,11 +50,11 @@ public class FindAllStudySessionsHandler implements HandlerFunction<ServerRespon
        private UUID id;
        private String description;
        private URL resourceLink;
-       private StudySession.Material resourceMaterial;
+       private DataEnum.Material resourceMaterial;
        private Duration timeSpent;
-       private StudySession.Method method;
+       private DataEnum.Method method;
        private LocalDate studyDate;
-       private StudySession.Status status;
+       private DataEnum.Status status;
 
        public static Session from(StudySession studySession) {
            return builder()

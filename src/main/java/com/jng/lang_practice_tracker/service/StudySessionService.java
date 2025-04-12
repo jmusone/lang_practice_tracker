@@ -1,5 +1,6 @@
 package com.jng.lang_practice_tracker.service;
 
+import com.jng.lang_practice_tracker.constants.DataEnum;
 import com.jng.lang_practice_tracker.domain.StudySession;
 import com.jng.lang_practice_tracker.repo.StudySessionEntity;
 import com.jng.lang_practice_tracker.repo.StudySessionRepository;
@@ -28,7 +29,7 @@ public class StudySessionService {
         return sessionRepository.save(StudySessionEntity.from(session)
                 .toBuilder()
                 .created(Instant.now())
-                .status(StudySession.Status.PRESENT)
+                .status(DataEnum.Status.PRESENT)
                 .build())
                 .map(StudySession::from);
     }
@@ -54,7 +55,7 @@ public class StudySessionService {
         return sessionRepository.findById(id)
                 .map(entity -> entity.toBuilder()
                         .updated(Instant.now())
-                        .status(StudySession.Status.DELETED)
+                        .status(DataEnum.Status.DELETED)
                         .build())
                 .flatMap(deleted -> sessionRepository.save(deleted))
                 .then();

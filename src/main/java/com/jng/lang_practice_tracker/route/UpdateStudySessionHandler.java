@@ -1,6 +1,7 @@
 package com.jng.lang_practice_tracker.route;
 
-import com.jng.lang_practice_tracker.constants.Constants;
+import com.jng.lang_practice_tracker.constants.DataEnum;
+import com.jng.lang_practice_tracker.constants.Endpoint;
 import com.jng.lang_practice_tracker.domain.StudySession;
 import com.jng.lang_practice_tracker.service.StudySessionService;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class UpdateStudySessionHandler implements HandlerFunction<ServerResponse
     public Mono<ServerResponse> handle(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Request.class)
                 .flatMap(request -> studySessionService.update(StudySession.builder()
-                        .id(UUID.fromString(serverRequest.pathVariable(Constants.ID_VARIABLE)))
+                        .id(UUID.fromString(serverRequest.pathVariable(Endpoint.ID_VARIABLE)))
                         .description(request.getDescription())
                         .resourceLink(request.getResourceLink())
                         .resourceMaterial(request.getResourceMaterial())
@@ -45,11 +46,11 @@ public class UpdateStudySessionHandler implements HandlerFunction<ServerResponse
         private UUID id;
         private String description;
         private URL resourceLink;
-        private StudySession.Material resourceMaterial;
+        private DataEnum.Material resourceMaterial;
         private Duration timeSpent;
-        private StudySession.Method method;
+        private DataEnum.Method method;
         private LocalDate studyDate;
-        private StudySession.Status status;
+        private DataEnum.Status status;
     }
 
     @Data
@@ -58,11 +59,11 @@ public class UpdateStudySessionHandler implements HandlerFunction<ServerResponse
         private UUID id;
         private String description;
         private URL resourceLink;
-        private StudySession.Material resourceMaterial;
+        private DataEnum.Material resourceMaterial;
         private Duration timeSpent;
-        private StudySession.Method method;
+        private DataEnum.Method method;
         private LocalDate studyDate;
-        private StudySession.Status status;
+        private DataEnum.Status status;
 
         public static Response from(StudySession studySession) {
             return builder()
