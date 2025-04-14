@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface StudySessionRepository extends R2dbcRepository<StudySessionEntity, UUID> {
+public interface StudySessionRepository extends R2dbcRepository<LanguageStudySessionEntity, UUID> {
 }

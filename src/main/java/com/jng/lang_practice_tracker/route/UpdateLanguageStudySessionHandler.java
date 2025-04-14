@@ -1,7 +1,7 @@
 package com.jng.lang_practice_tracker.route;
 
-import com.jng.lang_practice_tracker.constants.DataEnum;
-import com.jng.lang_practice_tracker.constants.Endpoint;
+import com.jng.lang_practice_tracker.config.RouteConfig;
+import com.jng.lang_practice_tracker.domain.LanguageStudySession;
 import com.jng.lang_practice_tracker.domain.StudySession;
 import com.jng.lang_practice_tracker.service.StudySessionService;
 import lombok.AllArgsConstructor;
@@ -20,14 +20,15 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-public class UpdateStudySessionHandler implements HandlerFunction<ServerResponse> {
+public class UpdateLanguageStudySessionHandler implements HandlerFunction<ServerResponse> {
     private final StudySessionService studySessionService;
 
     public Mono<ServerResponse> handle(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Request.class)
-                .flatMap(request -> studySessionService.update(StudySession.builder()
-                        .id(UUID.fromString(serverRequest.pathVariable(Endpoint.ID_VARIABLE)))
+                .flatMap(request -> studySessionService.update(LanguageStudySession.builder()
+                        .id(UUID.fromString(serverRequest.pathVariable(RouteConfig.ID_VARIABLE)))
                         .description(request.getDescription())
+                        .language(request.getLanguage())
                         .resourceLink(request.getResourceLink())
                         .resourceMaterial(request.getResourceMaterial())
                         .timeSpent(request.getTimeSpent())
@@ -35,8 +36,8 @@ public class UpdateStudySessionHandler implements HandlerFunction<ServerResponse
                         .studyDate(request.getStudyDate())
                         .status(request.getStatus())
                         .build()))
-                .flatMap(studySession -> ServerResponse.ok()
-                        .body(BodyInserters.fromValue(Response.from(studySession))));
+                .flatMap(languageStudySession -> ServerResponse.ok()
+                        .body(BodyInserters.fromValue(Response.from(languageStudySession))));
     }
 
     @Data
@@ -45,12 +46,13 @@ public class UpdateStudySessionHandler implements HandlerFunction<ServerResponse
     private static final class Request {
         private UUID id;
         private String description;
+        private String language;
         private URL resourceLink;
-        private DataEnum.Material resourceMaterial;
+        private StudySession.Material resourceMaterial;
         private Duration timeSpent;
-        private DataEnum.Method method;
+        private StudySession.Method method;
         private LocalDate studyDate;
-        private DataEnum.Status status;
+        private StudySession.Status status;
     }
 
     @Data
@@ -58,23 +60,25 @@ public class UpdateStudySessionHandler implements HandlerFunction<ServerResponse
     private static final class Response {
         private UUID id;
         private String description;
+        private String language;
         private URL resourceLink;
-        private DataEnum.Material resourceMaterial;
+        private StudySession.Material resourceMaterial;
         private Duration timeSpent;
-        private DataEnum.Method method;
+        private StudySession.Method method;
         private LocalDate studyDate;
-        private DataEnum.Status status;
+        private StudySession.Status status;
 
-        public static Response from(StudySession studySession) {
+        public static Response from(LanguageStudySession languageStudySession) {
             return builder()
-                    .id(studySession.getId())
-                    .description(studySession.getDescription())
-                    .resourceLink(studySession.getResourceLink())
-                    .resourceMaterial(studySession.getResourceMaterial())
-                    .timeSpent(studySession.getTimeSpent())
-                    .method(studySession.getMethod())
-                    .studyDate(studySession.getStudyDate())
-                    .status(studySession.getStatus())
+                    .id(languageStudySession.getId())
+                    .description(languageStudySession.getDescription())
+                    .language(languageStudySession.getLanguage())
+                    .resourceLink(languageStudySession.getResourceLink())
+                    .resourceMaterial(languageStudySession.getResourceMaterial())
+                    .timeSpent(languageStudySession.getTimeSpent())
+                    .method(languageStudySession.getMethod())
+                    .studyDate(languageStudySession.getStudyDate())
+                    .status(languageStudySession.getStatus())
                     .build();
         }
     }

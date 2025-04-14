@@ -1,6 +1,6 @@
 package com.jng.lang_practice_tracker.route;
 
-import com.jng.lang_practice_tracker.constants.DataEnum;
+import com.jng.lang_practice_tracker.domain.LanguageStudySession;
 import com.jng.lang_practice_tracker.domain.StudySession;
 import com.jng.lang_practice_tracker.service.StudySessionService;
 import lombok.Builder;
@@ -21,7 +21,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class FindAllStudySessionsHandler implements HandlerFunction<ServerResponse> {
+public class FindAllLanguageStudySessionsHandler implements HandlerFunction<ServerResponse> {
     private final StudySessionService studySessionService;
 
     public Mono<ServerResponse> handle(ServerRequest serverRequest) {
@@ -35,9 +35,9 @@ public class FindAllStudySessionsHandler implements HandlerFunction<ServerRespon
     @Builder
    private static final class Response {
         List<Session> sessionList;
-        public static Response from(Collection<StudySession> studySessionList) {
+        public static Response from(Collection<LanguageStudySession> languageStudySessionList) {
             return builder()
-                    .sessionList(studySessionList.stream()
+                    .sessionList(languageStudySessionList.stream()
                             .map(Session::from)
                             .collect(Collectors.toList()))
                     .build();
@@ -49,23 +49,25 @@ public class FindAllStudySessionsHandler implements HandlerFunction<ServerRespon
     private static final class Session {
        private UUID id;
        private String description;
+       private String language;
        private URL resourceLink;
-       private DataEnum.Material resourceMaterial;
+       private StudySession.Material resourceMaterial;
        private Duration timeSpent;
-       private DataEnum.Method method;
+       private StudySession.Method method;
        private LocalDate studyDate;
-       private DataEnum.Status status;
+       private StudySession.Status status;
 
-       public static Session from(StudySession studySession) {
+       public static Session from(LanguageStudySession languageStudySession) {
            return builder()
-                   .id(studySession.getId())
-                   .description(studySession.getDescription())
-                   .resourceLink(studySession.getResourceLink())
-                   .resourceMaterial(studySession.getResourceMaterial())
-                   .timeSpent(studySession.getTimeSpent())
-                   .method(studySession.getMethod())
-                   .studyDate(studySession.getStudyDate())
-                   .status(studySession.getStatus())
+                   .id(languageStudySession.getId())
+                   .description(languageStudySession.getDescription())
+                   .language(languageStudySession.getLanguage())
+                   .resourceLink(languageStudySession.getResourceLink())
+                   .resourceMaterial(languageStudySession.getResourceMaterial())
+                   .timeSpent(languageStudySession.getTimeSpent())
+                   .method(languageStudySession.getMethod())
+                   .studyDate(languageStudySession.getStudyDate())
+                   .status(languageStudySession.getStatus())
                    .build();
        }
    }

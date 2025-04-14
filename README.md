@@ -7,14 +7,15 @@
 
 ## Usage
 ### Creating
-Endpoint: `/studysession`
+Endpoint: `/v1/studysession/lang/`
 
 Example CURL:
 ```
-curl --location 'http://localhost:8080/studysession' \
+curl --location 'http://localhost:8080/v1/studysession/lang/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "description": "this is an example study session",
+    "language": "Italian",
     "resourceLink": "https://www.youtube.com/@comprehensiblechinese/playlists",
     "resourceMaterial": "VIDEO",
     "timeSpent": "PT30M",
@@ -25,31 +26,32 @@ curl --location 'http://localhost:8080/studysession' \
 
 ### Reading
 #### Get All 
-Endpoint: `/studysession`
+Endpoint: `/v1/studysession/lang/`
 
 Example CURL:
 ```
-curl --location 'http://localhost:8080/studysession'
+curl --location 'http://localhost:8080/v1/studysession/lang/'
 ```
 
 #### Get Study Session By Id
-Endpoint: `/studysession/{id}/`
+Endpoint: `/v1/studysession/lang/{id}/`
 
 Example CURL:
 ```
-curl --location 'http://localhost:8080/studysession/62cd3e21-47bc-45d0-b4d7-fc409e4dbd6e/'
+curl --location 'http://localhost:8080/v1/studysession/lang/62cd3e21-47bc-45d0-b4d7-fc409e4dbd6e/'
 ```
 
 ### Updating
-Endpoint: `/studysession/{id}/`
+Endpoint: `/v1/studysession/lang/{id}/`
 
 Example CURL:
 ```
-curl --location --request PUT 'http://localhost:8080/studysession/62cd3e21-47bc-45d0-b4d7-fc409e4dbd6e/' \
+curl --location --request PUT 'http://localhost:8080/v1/studysession/lang/62cd3e21-47bc-45d0-b4d7-fc409e4dbd6e/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "description": "this is an example study session, but edited",
     "resourceLink": "https://www.youtube.com/@comprehensiblechinese/playlists",
+    "language": "Italian",
     "resourceMaterial": "VIDEO",
     "timeSpent": "PT30M",
     "method": "COMPREHENSIVE_INPUT",
@@ -59,11 +61,11 @@ curl --location --request PUT 'http://localhost:8080/studysession/62cd3e21-47bc-
 ```
 
 ### Deleting
-Endpoint: `/studysession{id}/`
+Endpoint: `/v1/studysession/lang/{id}/`
 
 Example CURL:
 ```
-curl --location --request DELETE 'http://localhost:8080/studysession/62cd3e21-47bc-45d0-b4d7-fc409e4dbd6e/'
+curl --location --request DELETE 'http://localhost:8080/v1/studysession/lang/62cd3e21-47bc-45d0-b4d7-fc409e4dbd6e/'
 ```
 
 ### Postman Collection

@@ -1,6 +1,5 @@
 package com.jng.lang_practice_tracker.repo;
 
-import com.jng.lang_practice_tracker.constants.DataEnum;
 import com.jng.lang_practice_tracker.domain.StudySession;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +8,6 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
 
 import java.net.URL;
 import java.time.Duration;
@@ -22,7 +20,6 @@ import java.util.UUID;
 @SuperBuilder(toBuilder = true)
 @Getter
 @Setter
-@Table("studySession")
 public class StudySessionEntity {
 
     @Id
@@ -35,13 +32,13 @@ public class StudySessionEntity {
     private URL resourceLink;
 
     @Column(value = "resourceMaterial")
-    private DataEnum.Material resourceMaterial;
+    private StudySession.Material resourceMaterial;
 
     @Column(value = "timeSpent")
     private Duration timeSpent;
 
     @Column
-    private DataEnum.Method method;
+    private StudySession.Method method;
 
     @Column(value = "studyDate")
     private LocalDate studyDate;
@@ -53,18 +50,5 @@ public class StudySessionEntity {
     private Instant updated;
 
     @Column
-    private DataEnum.Status status;
-
-    public static StudySessionEntity from(StudySession studySession) {
-        return builder()
-                .id(studySession.getId())
-                .description(studySession.getDescription())
-                .resourceLink(studySession.getResourceLink())
-                .resourceMaterial(studySession.getResourceMaterial())
-                .timeSpent(studySession.getTimeSpent())
-                .method(studySession.getMethod())
-                .studyDate(studySession.getStudyDate())
-                .status(studySession.getStatus())
-                .build();
-    }
+    private StudySession.Status status;
 }
