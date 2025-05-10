@@ -3,7 +3,7 @@
 
 ## Running Locally
 1. Download the repository.
-2. Use `./gradlew bootRun` to start the application.
+2. Use `./gradlew bootRun --args='--spring.profiles.active=dev` to start the application.
 
 ## Usage
 ### Creating
@@ -83,4 +83,7 @@ resourceMaterial, method, and status are enums that take specific values. Here's
 
 ## Tests
 > [!WARNING]
-> NOT IMPLEMENTED YET
+> Only some tests are implemented currently.
+
+For unit tests, run the following command:
+`./gradlew clean test`
