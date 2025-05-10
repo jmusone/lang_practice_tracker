@@ -1,5 +1,9 @@
 # lang_practice_tracker CHANGELOG
 
+### 05/10/2025
+#### 0.1.0
+- Add unit tests for Study Session Service functionality
+
 ### 04/14/2025
 #### 0.0.19
 - Create CHANGELOG
