@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import com.jng.lang_practice_tracker.repo.StudySessionEntity;
-
 @Data
 @SuperBuilder
 @Getter
