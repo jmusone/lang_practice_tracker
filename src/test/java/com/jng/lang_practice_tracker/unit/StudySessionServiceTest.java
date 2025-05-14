@@ -1,4 +1,4 @@
-package com.jng.lang_practice_tracker;
+package com.jng.lang_practice_tracker.unit;
 
 import com.jng.lang_practice_tracker.domain.LanguageStudySession;
 import com.jng.lang_practice_tracker.domain.StudySession;

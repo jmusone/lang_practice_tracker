@@ -1,6 +1,10 @@
 # lang_practice_tracker CHANGELOG
 
 ### 05/10/2025
+#### 0.1.3
+- Add `UpdateLanguageStudySessionHandlerTest` to test update handler
+  - Note: some of these unit tests reflect the current reality of the MVP, not the indended implementation. For example, when an id is not provided as a path variable, the API should handle it more gracefully than a `IllegalArgumentException`. This applies for all unit tests under versioning `0.1.x`.
+- Make Handler subclasses public
 #### 0.1.2
 - Update README
 

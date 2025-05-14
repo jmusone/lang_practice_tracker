@@ -30,7 +30,7 @@ public class FindLanguageStudySessionByIdHandler implements HandlerFunction<Serv
 
     @Data
     @Builder
-    private static final class Response {
+    public static final class Response {
         private UUID id;
         private String description;
         private String language;

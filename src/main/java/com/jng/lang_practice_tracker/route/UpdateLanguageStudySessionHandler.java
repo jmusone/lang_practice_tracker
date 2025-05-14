@@ -43,7 +43,7 @@ public class UpdateLanguageStudySessionHandler implements HandlerFunction<Server
     @Data
     @Builder
     @AllArgsConstructor
-    private static final class Request {
+    public static final class Request {
         private UUID id;
         private String description;
         private String language;
@@ -57,7 +57,7 @@ public class UpdateLanguageStudySessionHandler implements HandlerFunction<Server
 
     @Data
     @Builder
-    private static final class Response {
+    public static final class Response {
         private UUID id;
         private String description;
         private String language;

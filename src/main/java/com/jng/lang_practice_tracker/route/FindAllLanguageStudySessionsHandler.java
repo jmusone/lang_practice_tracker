@@ -33,7 +33,7 @@ public class FindAllLanguageStudySessionsHandler implements HandlerFunction<Serv
 
     @Data
     @Builder
-   private static final class Response {
+   public static final class Response {
         List<Session> sessionList;
         public static Response from(Collection<LanguageStudySession> languageStudySessionList) {
             return builder()
@@ -45,8 +45,8 @@ public class FindAllLanguageStudySessionsHandler implements HandlerFunction<Serv
    }
 
    @Data
-    @Builder
-    private static final class Session {
+   @Builder
+   public static final class Session {
        private UUID id;
        private String description;
        private String language;
