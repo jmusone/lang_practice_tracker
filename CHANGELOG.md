@@ -1,5 +1,8 @@
 # lang_practice_tracker CHANGELOG
 
+### 05/21/2025
+#### 0.1.4
+- Add unit tests for all other Handlers
 ### 05/10/2025
 #### 0.1.3
 - Add `UpdateLanguageStudySessionHandlerTest` to test update handler

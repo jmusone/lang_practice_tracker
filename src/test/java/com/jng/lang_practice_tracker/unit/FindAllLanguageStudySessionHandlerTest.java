@@ -60,6 +60,8 @@ public class FindAllLanguageStudySessionHandlerTest {
         findAllLanguageStudySessionsHandler.handle(serverRequest)
                 .as(StepVerifier::create)
                 .expectNextCount(1)
+                //.expectNext(languageStudySession1)
+                //.expectNext(languageStudySession2) //maybe ask Nick about this lol
                 .verifyComplete();
         verify(studySessionService, times(1)).findAll();
     }
