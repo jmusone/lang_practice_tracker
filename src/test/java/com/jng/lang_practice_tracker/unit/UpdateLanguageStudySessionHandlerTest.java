@@ -36,7 +36,7 @@ public class UpdateLanguageStudySessionHandlerTest {
         UUID uuid = UUID.randomUUID();
         ServerRequest request = mock(ServerRequest.class);
         LanguageStudySession languageStudySession = LanguageStudySession.builder().build();
-        UpdateLanguageStudySessionHandler.Request handlerRequest = mock(UpdateLanguageStudySessionHandler.Request.class);
+        UpdateLanguageStudySessionHandler.Request handlerRequest = UpdateLanguageStudySessionHandler.Request.builder().build();
 
         //When
         when(studySessionService.update(any(LanguageStudySession.class)))
